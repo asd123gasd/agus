@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PA!.Store - El Sistema de Gestión para tu Servicio Técnico</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* Custom styles to apply the Inter font */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Dark blue background */
+            color: #e2e8f0; /* Light text color */
+        }
+        /* Gradient text effect */
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Glassmorphism effect for the navbar */
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        /* Feature card hover effect */
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+        }
+        /* Custom scrollbar for a better look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #3b82f6;
+            border-radius: 10px;
+        }
+        /* Animation for elements on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="glass-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://placehold.co/40x40/3b82f6/FFFFFF?text=P" alt="PA!.Store Logo" class="rounded-full">
+                <span class="text-xl font-bold text-white">PA!.Store</span>
+            </div>
+            <nav id="nav-menu" class="hidden md:flex items-center space-x-8">
+                <a href="#features" class="text-slate-300 hover:text-white transition-colors duration-200">Funcionalidades</a>
+                <a href="#how-it-works" class="text-slate-300 hover:text-white transition-colors duration-200">Cómo Funciona</a>
+                <a href="#pricing" class="text-slate-300 hover:text-white transition-colors duration-200">Precios</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <a href="auth/login.html" class="hidden sm:block text-slate-300 hover:text-white transition-colors duration-200">Iniciar Sesión</a>
+                <a href="auth/register.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 shadow-lg shadow-blue-600/30">
+                    Prueba Gratis por 30 Días
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="pt-32 pb-20 md:pt-40 md:pb-28">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+                    La Plataforma <span class="gradient-text">Todo-en-Uno</span> para tu Servicio Técnico
+                </h1>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-400 mb-10">
+                    Desde la gestión de remitos hasta el control de inventario y la comunicación con tus clientes. PA!.Store digitaliza y potencia tu taller.
+                </p>
+                <div class="flex justify-center items-center gap-4">
+                     <a href="auth/register.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-transform duration-200 hover:scale-105 shadow-2xl shadow-blue-600/40">
+                        Comenzar mi Prueba Gratuita
+                    </a>
+                </div>
+                 <div class="mt-16">
+                    <img src="assets/dashboard.png" alt="Dashboard de PA!.Store" class="rounded-xl shadow-2xl mx-auto ring-1 ring-white/10">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Digitaliza cada aspecto de tu taller</h2>
+                    <p class="text-lg text-slate-400 mt-4 max-w-2xl mx-auto">Herramientas diseñadas específicamente para optimizar tu flujo de trabajo diario.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Feature Cards -->
+                    <div class="feature-card bg-slate-800/50 p-8 rounded-xl border border-slate-700 transition-all duration-300 reveal">
+                        <div class="text-3xl text-blue-500 mb-4"><i class="fa-solid fa-receipt"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Gestión de Remitos Digitales</h3>
+                        <p class="text-slate-400">Registra cada equipo que ingresa con un formulario detallado. Sigue el estado de cada reparación en tiempo real, desde "Recibido" hasta "Entregado", con un historial completo de cada cambio.</p>
+                    </div>
+                    <div class="feature-card bg-slate-800/50 p-8 rounded-xl border border-slate-700 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                        <div class="text-3xl text-blue-500 mb-4"><i class="fa-solid fa-box-open"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Control de Inventario Inteligente</h3>
+                        <p class="text-slate-400">Administra tus repuestos, asigna piezas a cada reparación y descuenta el stock automáticamente. Recibe alertas de stock bajo para no quedarte nunca sin componentes clave.</p>
+                    </div>
+                    <div class="feature-card bg-slate-800/50 p-8 rounded-xl border border-slate-700 transition-all duration-300 reveal" style="transition-delay: 200ms;">
+                        <div class="text-3xl text-blue-500 mb-4"><i class="fa-brands fa-whatsapp"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Comunicación Directa por WhatsApp</h3>
+                        <p class="text-slate-400">Notifica a tus clientes con un solo clic. Utiliza plantillas personalizables para informar sobre nuevos registros o cambios de estado, mejorando la confianza y reduciendo las consultas.</p>
+                    </div>
+                    <div class="feature-card bg-slate-800/50 p-8 rounded-xl border border-slate-700 transition-all duration-300 reveal" style="transition-delay: 300ms;">
+                        <div class="text-3xl text-blue-500 mb-4"><i class="fa-solid fa-qrcode"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Portal de Consulta para Clientes</h3>
+                        <p class="text-slate-400">Cada remito impreso incluye un código QR único. Tus clientes pueden escanearlo para ver el estado actualizado de su reparación en cualquier momento, 24/7.</p>
+                    </div>
+                    <div class="feature-card bg-slate-800/50 p-8 rounded-xl border border-slate-700 transition-all duration-300 reveal" style="transition-delay: 400ms;">
+                        <div class="text-3xl text-blue-500 mb-4"><i class="fa-solid fa-store"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Personaliza tu Taller</h3>
+                        <p class="text-slate-400">Adapta la plataforma a tu marca. Sube tu propio logo y una imagen publicitaria para el dashboard, y configura tus datos de contacto y redes sociales para que tus clientes te encuentren.</p>
+                    </div>
+                    <div class="feature-card bg-slate-800/50 p-8 rounded-xl border border-slate-700 transition-all duration-300 reveal" style="transition-delay: 500ms;">
+                        <div class="text-3xl text-blue-500 mb-4"><i class="fa-solid fa-chart-pie"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-3">Análisis de Rentabilidad</h3>
+                        <p class="text-slate-400">Conoce la ganancia estimada de cada reparación. El sistema calcula automáticamente la rentabilidad restando el costo de los repuestos utilizados del presupuesto final.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Empieza a optimizar en 3 simples pasos</h2>
+                </div>
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="reveal">
+                        <div class="text-4xl font-bold gradient-text mb-4">1</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Crea tu Cuenta</h3>
+                        <p class="text-slate-400">Regístrate en menos de un minuto y obtén acceso instantáneo a todas las herramientas durante 30 días.</p>
+                    </div>
+                    <div class="reveal" style="transition-delay: 200ms;">
+                        <div class="text-4xl font-bold gradient-text mb-4">2</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Personaliza tu Taller</h3>
+                        <p class="text-slate-400">Sube tu logo, configura tus datos de contacto y ajusta las plantillas de mensajes para que todo lleve tu marca.</p>
+                    </div>
+                    <div class="reveal" style="transition-delay: 400ms;">
+                        <div class="text-4xl font-bold gradient-text mb-4">3</div>
+                        <h3 class="text-xl font-semibold text-white mb-2">Registra tu Primer Equipo</h3>
+                        <p class="text-slate-400">Comienza a generar remitos digitales, notificar a tus clientes y a gestionar tu inventario de forma profesional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">La herramienta preferida por los técnicos</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="bg-slate-800 p-8 rounded-lg reveal">
+                        <p class="text-slate-300 mb-6">"Desde que uso PA!.Store, ahorré horas en llamadas. Mis clientes consultan el estado online y las notificaciones por WhatsApp son un éxito. ¡Totalmente recomendado!"</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/818cf8/FFFFFF?text=JR" class="rounded-full mr-4" alt="user photo">
+                            <div>
+                                <p class="font-semibold text-white">Javier Rodriguez</p>
+                                <p class="text-sm text-slate-400">JR-Tecno, Córdoba</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 p-8 rounded-lg reveal" style="transition-delay: 200ms;">
+                        <p class="text-slate-300 mb-6">"El control de inventario cambió mi negocio. Ahora sé exactamente qué repuestos tengo y cuándo necesito reponer. La función de asignar piezas a remitos es genial."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/f472b6/FFFFFF?text=LV" class="rounded-full mr-4" alt="user photo">
+                            <div>
+                                <p class="font-semibold text-white">Luciana Vega</p>
+                                <p class="text-sm text-slate-400">Celularia, Rosario</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-800 p-8 rounded-lg reveal" style="transition-delay: 400ms;">
+                        <p class="text-slate-300 mb-6">"La plataforma es súper intuitiva y profesional. Mis clientes quedan impresionados con los remitos impresos con QR. Le dio una imagen mucho más seria a mi taller."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/40x40/34d399/FFFFFF?text=MS" class="rounded-full mr-4" alt="user photo">
+                            <div>
+                                <p class="font-semibold text-white">Martín Sosa</p>
+                                <p class="text-sm text-slate-400">FixIT, Buenos Aires</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20">
+            <div class="container mx-auto px-6 reveal">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Un Plan Simple y Transparente</h2>
+                    <p class="text-lg text-slate-400 mt-4 max-w-2xl mx-auto">Sin contratos, sin sorpresas. Prueba todas las funcionalidades sin compromiso.</p>
+                </div>
+
+                <div class="max-w-md mx-auto bg-slate-800/50 rounded-2xl border border-blue-500 shadow-2xl shadow-blue-500/20 p-8">
+                    <h3 class="text-2xl font-bold text-center text-white">Acceso Beta</h3>
+                    <p class="text-center text-slate-400 mt-2">Prueba completa de la plataforma.</p>
+                    <div class="text-center my-8">
+                        <span class="text-5xl font-extrabold text-white">Gratis</span>
+                        <span class="text-xl text-slate-400">/ 30 días</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i><span class="text-slate-300">Remitos ilimitados</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i><span class="text-slate-300">Gestión de Inventario</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i><span class="text-slate-300">Notificaciones por WhatsApp</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i><span class="text-slate-300">Portal de Cliente con QR</span></li>
+                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i><span class="text-slate-300">Personalización del Taller</span></li>
+                    </ul>
+                    <a href="auth/register.html" class="w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200 block">
+                        Comenzar Prueba Gratuita
+                    </a>
+                    <p class="text-center text-xs text-slate-500 mt-4">No se requiere tarjeta de crédito.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-20 bg-slate-900/50">
+            <div class="container mx-auto px-6 max-w-4xl reveal">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-bold text-white">Preguntas Frecuentes</h2>
+                </div>
+                <div class="space-y-6">
+                    <details class="bg-slate-800/50 p-6 rounded-lg group">
+                        <summary class="flex items-center justify-between font-semibold text-white cursor-pointer">
+                            ¿Necesito instalar algo en mi computadora?
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="text-slate-400 mt-4">No. PA!.Store es una aplicación 100% web. Puedes acceder desde cualquier navegador en tu computadora, tablet o celular con conexión a internet.</p>
+                    </details>
+                    <details class="bg-slate-800/50 p-6 rounded-lg group">
+                        <summary class="flex items-center justify-between font-semibold text-white cursor-pointer">
+                            ¿Qué pasa después de los 30 días de prueba?
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="text-slate-400 mt-4">Después del período beta, la aplicación entrará en mantenimiento mientras procesamos las opiniones. Te contactaremos para informarte sobre los planes de suscripción futuros. Tus datos estarán seguros y podrás exportarlos si lo deseas.</p>
+                    </details>
+                    <details class="bg-slate-800/50 p-6 rounded-lg group">
+                        <summary class="flex items-center justify-between font-semibold text-white cursor-pointer">
+                            ¿Mis datos están seguros?
+                            <i class="fa-solid fa-chevron-down transition-transform duration-300 group-open:rotate-180"></i>
+                        </summary>
+                        <p class="text-slate-400 mt-4">Sí. Utilizamos la infraestructura segura de Google Firebase. Cada taller tiene sus datos completamente aislados y solo tú puedes acceder a tu información con tu cuenta.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="py-20">
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">¿Listo para transformar tu servicio técnico?</h2>
+                <p class="text-lg text-slate-400 mt-4 mb-8 max-w-2xl mx-auto">Únete a nuestra beta y descubre una forma más inteligente de gestionar tu taller.</p>
+                <a href="auth/register.html" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-transform duration-200 hover:scale-105 shadow-2xl shadow-blue-600/40">
+                    Crear mi cuenta ahora
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-400">
+            <p>&copy; 2025 PA!.Store. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Una herramienta creada para potenciar a los técnicos de Argentina.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar scroll effect
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('glass-nav');
+                } else {
+                    // header.classList.remove('glass-nav'); 
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Scroll reveal animation
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>

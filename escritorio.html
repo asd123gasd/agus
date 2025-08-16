@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PA!.Store - Escritorio</title>
+
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/escritorio.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode">
+    <div id="tsparticles"></div>
+
+    <header>
+        <div class="logo">
+          <img src="assets/logo-marca.png" alt="PA!.Store" id="logoPreviewHeader" alt="PA!.Store" id="logoPreviewHeader"/>
+        </div>
+        <nav>
+            <a href="escritorio.html" class="nav-button active" title="Escritorio"><i class="fas fa-desktop"></i><span class="nav-text">Escritorio</span></a>
+            <a href="registrar-equipo.html" class="nav-button" title="Registrar Equipo"><i class="fas fa-plus-circle"></i><span class="nav-text">Registrar</span></a>
+            <a href="registros.html" class="nav-button" title="Ver Registros"><i class="fas fa-history"></i><span class="nav-text">Historial</span></a>
+            <a href="inventario.html" class="nav-button" title="Inventario"><i class="fas fa-box-open"></i><span class="nav-text">Inventario</span></a>
+            <a href="proveedores.html" class="nav-button" title="Proveedores"><i class="fas fa-truck"></i><span class="nav-text">Proveedores</span></a>
+            <a href="perfil.html" class="nav-button" title="Mi Perfil"><i class="fas fa-user-circle"></i><span class="nav-text">Mi Perfil</span></a>
+        </nav>
+        <div class="switch-container" title="Cambiar modo oscuro/claro">
+            <input type="checkbox" id="darkModeToggle" class="switch-checkbox" checked />
+            <label for="darkModeToggle" class="switch-slider"></label>
+        </div>
+    </header>
+
+    <div class="top-bar-sticky">
+        <div class="top-bar-content">
+            <div class="main-search-container">
+                <div class="search-wrapper">
+                    <form class="search-form-card" id="global-search-form">
+                        <div class="search-form-body">
+                            <div class="search-icon-container">
+                                <i class="fas fa-search h4"></i>
+                            </div>
+                            <div class="search-input-container">
+                                <input class="form-control-borderless" type="search" id="global-search-input" placeholder="Buscar por cliente, equipo o N° de remito...">
+                            </div>
+                            <div class="search-button-container">
+                                <button class="btn-search-submit" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="search-results-container hidden" id="global-search-results">
+                        </div>
+                </div>
+            </div>
+    
+            <div class="profile-section-top">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-dot"></span>
+                </div>
+                <div class="user-info">
+                    <span id="username-display-top" class="top-bar-username">Usuario</span>
+                    <span class="user-role">Administrador</span>
+                </div>
+                <img src="https://placehold.co/40x40/3b82f6/FFFFFF?text=P" alt="Perfil" id="profilePicturePreviewTop" class="profile-logo-top">
+                <i class="fas fa-chevron-down profile-dropdown-icon"></i>
+            </div>
+        </div>
+    </div>
+    <main class="container-inicio content-wrapper">
+        <h1 class="welcome-header">
+            ¡Bienvenido, <span id="username-display">Usuario</span>! 👋
+        </h1>
+
+        <div class="main-content-area">
+            <div class="quick-access-grid">
+                <div class="qa-card image-card grid-item-full-width" id="desktop-ad-container">
+                    <p style="padding: 1rem; text-align: center; color: var(--color-texto-secundario-dark);">La imagen de publicidad aparecerá aquí.</p>
+                </div>
+                <div class="qa-card">
+                    <i class="fas fa-compass qa-icon"></i>
+                    <h3>Atajos</h3>
+                    <p>Configura tu perfil para personalizar tu experiencia.</p>
+                    <a href="perfil.html" class="qa-link">Ir a Mi Perfil <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="dashboard-wrapper dashboard-right-align">
+
+                <div class="social-links-header">
+                    <span class="social-label">Sígueme en</span>
+                    <ul class="social">
+                        <li data-tooltip="Bluesky" style="--bg: #3a83f7"><a href="#" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a></li>
+                        <li data-tooltip="Twitter" style="--bg: #101419"><a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li data-tooltip="YouTube" style="--bg: #ff0000"><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li data-tooltip="Instagram" style="--bg: linear-gradient(-45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5)"><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li data-tooltip="Behance" style="--bg: #2356f6"><a href="#" aria-label="Behance"><i class="fa-brands fa-behance"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div class="panel-header-v4">
+                    <h3>Estado del Taller</h3>
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="panel-stats-group-v4">
+                    <div class="stat-item-v4" id="equipos-taller-card">
+                        <div class="inner-gradient-overlay"></div> <div class="stat-content">
+                            <i class="fas fa-tools"></i>
+                            <span class="stat-value-v4" id="stat-total-inicio">0</span>
+                            <span class="stat-label-v4">Equipos en Taller</span>
+                        </div>
+                        <div class="stat-list-overlay" id="equipos-taller-list">
+                            <h4>Equipos en Taller</h4>
+                            <ul><li>Cargando...</li></ul>
+                        </div>
+                    </div>
+                    <div class="stat-item-v4" id="listos-retirar-card">
+                        <div class="inner-gradient-overlay"></div> <div class="stat-content">
+                            <i class="fas fa-box-open"></i>
+                            <span class="stat-value-v4" id="stat-listos-inicio">0</span>
+                            <span class="stat-label-v4">Listos para Retirar</span>
+                        </div>
+                        <div class="stat-list-overlay" id="listos-retirar-list">
+                            <h4>Listos para Retirar</h4>
+                            <ul><li>Cargando...</li></ul>
+                        </div>
+                    </div>
+                    <div class="stat-item-v4" id="ingresos-hoy-card">
+                        <div class="inner-gradient-overlay"></div> <div class="stat-content">
+                            <i class="fas fa-calendar-day"></i>
+                            <span class="stat-value-v4" id="stat-hoy-inicio">0</span>
+                            <span class="stat-label-v4">Ingresos de Hoy</span>
+                        </div>
+                        <div class="stat-list-overlay" id="ingresos-hoy-list">
+                            <h4>Ingresos de Hoy</h4>
+                            <ul><li>Cargando...</li></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer-v4">
+                    <a href="registros.html" class="panel-link-v4">Ver todos los registros</a>
+                </div>
+
+                <div class="finance-container-pro">
+                    <div class="finance-card-pro">
+                        <div class="card-pro-header">
+                            <div class="card-pro-icon-wrapper">
+                                <i class="fas fa-file-invoice-dollar card-pro-icon"></i>
+                            </div>
+                            <span class="card-pro-title">Presupuestos</span>
+                        </div>
+                        <div class="card-pro-body">
+                            <p class="card-pro-amount" id="presupuestos-amount">$0.00</p>
+                            <div class="card-pro-trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>5.4%</span>
+                            </div>
+                        </div>
+                        <div class="card-pro-footer">
+                            <span>vs. últimos 30 días</span>
+                        </div>
+                    </div>
+                
+                    <div class="finance-card-pro">
+                        <div class="card-pro-header">
+                            <div class="card-pro-icon-wrapper">
+                                <i class="fas fa-cash-register card-pro-icon"></i>
+                            </div>
+                            <span class="card-pro-title">Ingresos en Caja</span>
+                        </div>
+                        <div class="card-pro-body">
+                            <p class="card-pro-amount" id="caja-amount">$0.00</p>
+                            <div id="caja-trend" class="card-pro-trend-up">
+                                <i id="caja-trend-icon" class="fas fa-arrow-up"></i>
+                                <span id="caja-trend-text">0%</span>
+                            </div>
+                        </div>
+                        <div class="card-pro-footer">
+                            <span>vs. ayer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="upgrade-banner">
+                    <div class="banner-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="banner-text">
+                        <p>Estás en el plan gratuito. <strong>Desbloquea todo el potencial.</strong></p>
+                    </div>
+                    <div class="banner-action">
+                        <a href="#" class="button">Actualizar a Pro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script type="module" src="scripts/main.js"></script>
+    <script type="module" src="scripts/escritorio.js"></script>
+</body>
+</html>

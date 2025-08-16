@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - PA!.Store</title>
+    
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/registros.css">
+    <link rel="stylesheet" href="styles/inventario.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode no-sidebar-expand">
+    <header>
+        <div class="logo">
+           <img src="assets/logo-marca.png" alt="PA!.Store" id="logoPreviewHeader"/>
+        </div>
+        <nav>
+            <a href="escritorio.html" class="nav-button" title="Escritorio"><i class="fas fa-desktop"></i><span class="nav-text">Escritorio</span></a>
+            <a href="registrar-equipo.html" class="nav-button" title="Registrar Equipo"><i class="fas fa-plus-circle"></i><span class="nav-text">Registrar</span></a>
+            <a href="registros.html" class="nav-button" title="Ver Registros"><i class="fas fa-history"></i><span class="nav-text">Historial</span></a>
+            <a href="inventario.html" class="nav-button active" title="Inventario"><i class="fas fa-box-open"></i><span class="nav-text">Inventario</span></a>
+            <a href="proveedores.html" class="nav-button" title="Proveedores"><i class="fas fa-truck"></i><span class="nav-text">Proveedores</span></a>
+            <a href="perfil.html" class="nav-button" title="Mi Perfil"><i class="fas fa-user-circle"></i><span class="nav-text">Mi Perfil</span></a>
+        </nav>
+        <div class="switch-container" title="Cambiar modo oscuro/claro">
+            <input type="checkbox" id="darkModeToggle" class="switch-checkbox" checked />
+            <label for="darkModeToggle" class="switch-slider"></label>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="premium-wall" class="premium-wall" style="display: none;">
+            <div class="premium-wall-content">
+                <i class="fas fa-lock"></i>
+                <h2>Esta es una Función Premium</h2>
+                <p>La gestión de inventario está incluida en tu prueba gratuita. Parece que tu período de prueba ha finalizado.</p>
+                <button id="upgrade-btn" class="btn-primary">Actualizar a Premium</button>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="inventory-header">
+                <h1>Gestión de Inventario</h1>
+                <div class="header-actions">
+                    <button id="btn-open-modal" class="btn-primary"><i class="fas fa-plus"></i> Agregar Repuesto</button>
+                </div>
+            </div>
+
+            <div class="inventory-summary">
+                <div class="summary-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div class="summary-text">
+                        <span class="summary-title">Valor Total del Inventario</span>
+                        <span class="summary-value" id="total-value">-</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div class="summary-text">
+                        <span class="summary-title">Items con Stock Bajo</span>
+                        <span class="summary-value" id="low-stock-items">-</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <i class="fas fa-boxes"></i>
+                    <div class="summary-text">
+                        <span class="summary-title">Repuestos Únicos</span>
+                        <span class="summary-value" id="unique-items">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-options-container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre o SKU..." aria-label="Buscar en inventario">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="view-controls">
+                    <button id="table-view-btn" class="view-btn active" title="Vista de Tabla"><i class="fas fa-list"></i></button>
+                    <button id="grid-view-btn" class="view-btn" title="Vista de Tarjetas"><i class="fas fa-th-large"></i></button>
+                </div>
+            </div>
+
+            <div id="inventory-table-view">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>SKU</th>
+                                <th>Proveedor</th> <th>Stock</th>
+                                <th>Precio Costo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="inventory-grid-view" class="inventory-grid" style="display: none;"></div>
+            
+            <div id="loader" class="loader-container" style="display: none;"><div class="spinner"></div></div>
+        </div>
+    </main>
+
+    <div id="item-modal" class="inv-modal-backdrop">
+        <div class="inv-modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Agregar Nuevo Repuesto</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="item-form" class="inv-modal-form" novalidate>
+                <input type="hidden" id="item-id">
+                <div class="form-group">
+                    <input class="form-input" type="text" id="item-name" placeholder=" " required>
+                    <label for="item-name" class="form-label">Nombre del Repuesto (*)</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-input" type="text" id="item-sku" placeholder=" ">
+                    <label for="item-sku" class="form-label">SKU / Código</label>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input class="form-input" type="number" id="item-stock" placeholder=" " required min="0">
+                        <label for="item-stock" class="form-label">Stock Actual (*)</label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-input" type="number" id="item-min-stock" placeholder=" " min="0">
+                        <label for="item-min-stock" class="form-label">Stock Mínimo</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="form-input" type="number" id="item-cost" placeholder=" " step="0.01" required min="0">
+                    <label for="item-cost" class="form-label">Precio de Costo (*)</label>
+                </div>
+
+                <div class="form-group">
+                    <select id="item-supplier" class="form-input">
+                        <option value="">Sin Proveedor</option>
+                        </select>
+                    <label for="item-supplier" class="form-label">Proveedor</label>
+                </div>
+                </form>
+            <div class="modal-footer">
+                <button id="modal-cancel-btn" class="btn-secondary">Cancelar</button>
+                <button id="modal-save-btn" type="submit" form="item-form" class="btn-primary">
+                    <span>Guardar</span>
+                    <div class="spinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js" type="module"></script>
+    <script src="scripts/inventario.js" type="module"></script>
+</body>
+</html>

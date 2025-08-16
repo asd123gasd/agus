@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - PAL.Store</title>
+
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/perfil.css">
+    <link rel="stylesheet" href="styles/profile-sections.css">
+    <link rel="stylesheet" href="styles/whatsapp-messages.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+</head>
+<body class="dark-mode">
+    <div id="tsparticles"></div>
+
+    <header>
+        <div class="logo">
+          <img src="https://placehold.co/50x50/3b82f6/FFFFFF?text=P" alt="PA!.Store" id="logoPreviewHeader"/>
+        </div>
+        <nav>
+             <a href="escritorio.html" class="nav-button active" title="Escritorio"><i class="fas fa-desktop"></i><span class="nav-text">Escritorio</span></a>
+            <a href="registrar-equipo.html" class="nav-button" title="Registrar Equipo"><i class="fas fa-plus-circle"></i><span class="nav-text">Registrar</span></a>
+            <a href="registros.html" class="nav-button" title="Ver Registros"><i class="fas fa-history"></i><span class="nav-text">Historial</span></a>
+            <a href="inventario.html" class="nav-button" title="Inventario"><i class="fas fa-box-open"></i><span class="nav-text">Inventario</span></a>
+            <a href="perfil.html" class="nav-button" title="Mi Perfil"><i class="fas fa-user-circle"></i><span class="nav-text">Mi Perfil</span></a>
+        </nav>
+        <div class="switch-container" title="Cambiar modo oscuro/claro">
+          <input type="checkbox" id="darkModeToggle" class="switch-checkbox" checked />
+          <label for="darkModeToggle" class="switch-slider"></label>
+        </div>
+    </header>
+
+    <div class="top-bar flex justify-between items-center">
+        <h1 class="dashboard-text">Configuración / Perfil</h1>
+        
+        <div class="p-5 overflow-hidden w-[60px] h-[60px] hover:w-[270px] bg-[#4070f4] shadow-[2px_2px_20px_rgba(0,0,0,0.08)] rounded-full flex group items-center hover:duration-300 duration-300">
+            <div class="flex items-center justify-center fill-white">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    id="Isolation_Mode"
+                    data-name="Isolation Mode"
+                    viewBox="0 0 24 24"
+                    width="22"
+                    height="22"
+                >
+                    <path
+                        d="M18.9,16.776A10.539,10.539,0,1,0,16.776,18.9l5.1,5.1L24,21.88ZM10.5,18A7.5,7.5,0,1,1,18,10.5,7.507,7.507,0,0,1,10.5,18Z"
+                    ></path>
+                </svg>
+            </div>
+            <input
+                type="text"
+                class="outline-none text-[20px] bg-transparent w-full text-white font-normal px-4"
+                placeholder="Buscar..."
+            />
+        </div>
+
+        <div class="profile-section-top">
+            <div class="notification-bell">
+                <i class="fas fa-bell"></i>
+                <span class="notification-dot"></span>
+            </div>
+            <div class="user-info">
+                <span id="username-display-top" class="top-bar-username">Usuario</span>
+                <span class="user-role">Administrador</span>
+            </div>
+            <img src="https://placehold.co/40x40/3b82f6/FFFFFF?text=P" alt="Perfil" id="profilePicturePreviewTop" class="profile-logo-top">
+            <i class="fas fa-chevron-down profile-dropdown-icon"></i>
+        </div>
+    </div>
+    <main class="container">
+        <div class="main-profile-content-wrapper">
+            <div class="mis-datos-column">
+                <div class="mis-datos-section-wrapper">
+                    <div class="mis-datos-card-wrapper">
+                        <div class="card-uiverse">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="card-top">
+                                        <p class="card-top-para">Mi Perfil</p>
+                                    </div>
+                                    <div class="profile-picture-section profile-picture-section--flipped-card">
+                                        <label for="profile-picture-input-display" class="profile-picture-placeholder" title="Haz clic para cambiar tu foto de perfil">
+                                            <img src="https://placehold.co/100x100/334155/94A3B8?text=%2B" alt="Foto de perfil" id="profilePicturePreviewDisplay">
+                                            <div class="upload-overlay"><i class="fas fa-camera"></i></div>
+                                        </label>
+                                        <input type="file" id="profile-picture-input-display" style="display: none;" accept="image/*">
+                                    </div>
+
+                                    <p class="heading" id="displayUsername">Agustin</p>
+                                    <p class="follow">Haz click para ver Contacto</p>
+                                </div>
+                                <div class="back">
+                                    <p class="heading">Mis Redes</p>
+                                    <div class="icons">
+                                        <a href="#" id="instagramLink" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                        <a href="#" id="twitterLink" target="_blank" title="X (Twitter)"><i class="fab fa-twitter-x"></i></a>
+                                        <a href="#" id="whatsappLink" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                                        <a href="#" id="facebookLink" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    </div>
+                                    <div class="contact-details-display">
+                                        <p><span class="label-display">Email:</span> <span id="displayEmail">correo@ejemplo.com</span></p>
+                                        <p><span class="label-display">Tel:</span> <span id="displayPhone">+54 9 11 1234 5678</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mis-datos-edit-form-clean">
+                        <h2 class="form-section-title"><i class="fas fa-edit"></i> Editar Mis Datos</h2>
+                        <div class="form-group-vertical">
+                            <div class="form__group field">
+                                <input type="text" class="form__field" placeholder="Nombre de Usuario / Taller" id="username-input" required="">
+                                <label for="username-input" class="form__label">Nombre de Usuario / Taller</label>
+                            </div>
+
+                            <div class="form__group field">
+                                <input type="email" class="form__field" placeholder="Correo Electrónico" id="email-input" required="">
+                                <label for="email-input" class="form__label">Correo Electrónico</label>
+                            </div>
+
+                            <div class="form__group field">
+                                <input type="tel" class="form__field" placeholder="Número de Teléfono" id="phone-input" required="">
+                                <label for="phone-input" class="form__label">Número de Teléfono</label>
+                            </div>
+                            
+                            <div class="social-inputs-grid">
+                                <div class="form__group field">
+                                    <input type="url" class="form__field" placeholder="URL de Instagram" id="instagram-input">
+                                    <label for="instagram-input" class="form__label">URL de Instagram</label>
+                                </div>
+                    
+                                <div class="form__group field">
+                                    <input type="url" class="form__field" placeholder="URL de X (Twitter)" id="twitter-input">
+                                    <label for="twitter-input" class="form__label">URL de X (Twitter)</label>
+                                </div>
+                    
+                                <div class="form__group field">
+                                    <input type="url" class="form__field" placeholder="Enlace de WhatsApp (wa.me/...)" id="whatsapp-input">
+                                    <label for="whatsapp-input" class="form__label">Enlace de WhatsApp</label>
+                                </div>
+                    
+                                <div class="form__group field">
+                                    <input type="url" class="form__field" placeholder="URL de Facebook" id="facebook-input">
+                                    <label for="facebook-input" class="form__label">URL de Facebook</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vertical-divider"></div>
+
+            <div class="taller-config-column">
+                <h2 class="form-section-title independent-page-title--taller">
+                    <i class="fas fa-tools"></i>
+                    Configuración del Taller
+                </h2>
+
+                <div class="tabs-container" id="taller-tabs-container" style="width: 100%;">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="taller-logo">Logo</button>
+                        <button class="tab-button" data-tab="taller-publicidad">Publicidad</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="taller-logo" class="tab-panel active">
+                            <div class="uploader-container">
+                                <div class="upload-area" id="logo-upload-area">
+                                    <div class="upload-idle">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Arrastra y suelta tu imagen aquí</p>
+                                        <span>o haz clic para seleccionar</span>
+                                    </div>
+                                    <div class="upload-preview" style="display: none;">
+                                        <img src="" alt="Previsualización del Logo" id="logo-preview-image">
+                                    </div>
+                                    <div class="upload-dragging">
+                                        <p>¡Suelta la imagen para cargarla!</p>
+                                    </div>
+                                </div>
+                                <div class="upload-info">
+                                    <h3>Logo de la Empresa</h3>
+                                    <p class="upload-specs">PNG o JPG (Recomendado: 500x500px)</p>
+                                    <div class="upload-actions">
+                                        <label for="logo-file-input" id="logo-upload-label" class="btn-professional btn-upload">
+                                            <span><i class="fas fa-upload"></i>Subir Logo</span>
+                                        </label>
+                                        <input type="file" id="logo-file-input" accept="image/png, image/jpeg" style="display: none;">
+                                        
+                                        <button class="btn-professional btn-delete" id="delete-logo-btn" style="display: none;">
+                                            <span><i class="fas fa-trash-alt"></i>Eliminar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="taller-publicidad" class="tab-panel">
+                            <div class="uploader-container">
+                                <div class="upload-area" id="ad-upload-area">
+                                    <div class="upload-idle">
+                                        <i class="fas fa-image"></i>
+                                        <p>Arrastra y suelta tu imagen aquí</p>
+                                        <span>o haz clic para seleccionar</span>
+                                    </div>
+                                    <div class="upload-preview" style="display: none;">
+                                        <img src="" alt="Previsualización de Publicidad" id="ad-preview-image">
+                                    </div>
+                                    <div class="upload-dragging">
+                                        <p>¡Suelta la imagen para cargarla!</p>
+                                    </div>
+                                </div>
+                                <div class="upload-info">
+                                    <h3>Publicidad del Escritorio</h3>
+                                    <p class="upload-specs">PNG o JPG (Formato 16:9)</p>
+                                    <div class="upload-actions">
+                                        <label for="ad-file-input" id="ad-upload-label" class="btn-professional btn-upload">
+                                            <span><i class="fas fa-upload"></i>Subir Publicidad</span>
+                                        </label>
+                                        <input type="file" id="ad-file-input" accept="image/png, image/jpeg" style="display: none;">
+                                        
+                                        <button class="btn-professional btn-delete" id="delete-ad-btn" style="display: none;">
+                                            <span><i class="fas fa-trash-alt"></i>Eliminar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <div class="chat-messages-config-section">
+            <h2 class="form-section-title">
+                <span class="title-icon-wrapper"><i class="fab fa-whatsapp"></i></span> 
+                <span class="title-text-wrapper">Configuración de Mensajes de WhatsApp</span>
+            </h2>
+            <p class="section-description">Haz clic en una tarjeta para editar el mensaje correspondiente.</p>
+
+            <div class="tabs-container" id="whatsapp-tabs-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="general">General</button>
+                    <button class="tab-button" data-tab="estados">Por Estado</button>
+                </div>
+
+                <div class="tab-content">
+                    <div id="general" class="tab-panel active">
+                        <div class="form-group-vertical">
+                            <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-register-message" data-title="Mensaje de Registro de Equipo" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span class="wa-card-title">Registro de Equipo</span>
+                                </div>
+                                <textarea id="whatsapp-register-message" style="display: none;">Escribe aquí el mensaje para nuevos registros.</textarea>
+                            </div>
+                            <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-update-general-message" data-title="Mensaje de Actualización de Estado (General)" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nuevo_estado}, {nombre_taller}">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <span class="wa-card-title">Estado (General)</span>
+                                </div>
+                                <textarea id="whatsapp-status-update-general-message" style="display: none;">Este mensaje se usa si no hay uno específico para el estado.</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="estados" class="tab-panel">
+                        <div class="form-group-vertical">
+                            <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-recibido-message" data-title="Estado: Recibido" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-box-open"></i><span class="wa-card-title">Recibido</span>
+                                </div>
+                                <textarea id="whatsapp-status-recibido-message" style="display: none;">Mensaje para el estado 'Recibido'.</textarea>
+                            </div>
+                            <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-revision-message" data-title="Estado: En revisión" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-search"></i><span class="wa-card-title">En revisión</span>
+                                </div>
+                                <textarea id="whatsapp-status-revision-message" style="display: none;">Mensaje para el estado 'En revisión'.</textarea>
+                            </div>
+                            <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-esperando-repuesto-message" data-title="Estado: Esperando repuesto" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-tools"></i><span class="wa-card-title">Esperando Repuesto</span>
+                                </div>
+                                <textarea id="whatsapp-status-esperando-repuesto-message" style="display: none;">Mensaje para el estado 'Esperando repuesto'.</textarea>
+                            </div>
+                             <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-esperando-aprobacion-message" data-title="Estado: Esperando aprobación" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-user-clock"></i><span class="wa-card-title">Esperando Aprobación</span>
+                                </div>
+                                <textarea id="whatsapp-status-esperando-aprobacion-message" style="display: none;">Mensaje para el estado 'Esperando aprobación'.</textarea>
+                            </div>
+                             <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-reparado-message" data-title="Estado: Reparado" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-check-circle"></i><span class="wa-card-title">Reparado</span>
+                                </div>
+                                <textarea id="whatsapp-status-reparado-message" style="display: none;">Mensaje para el estado 'Reparado'.</textarea>
+                            </div>
+                             <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-listo-retirar-message" data-title="Estado: Listo para retirar" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-shopping-bag"></i><span class="wa-card-title">Listo para Retirar</span>
+                                </div>
+                                <textarea id="whatsapp-status-listo-retirar-message" style="display: none;">Mensaje para el estado 'Listo para retirar'.</textarea>
+                            </div>
+                             <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-entregado-message" data-title="Estado: Entregado" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-handshake"></i><span class="wa-card-title">Entregado</span>
+                                </div>
+                                <textarea id="whatsapp-status-entregado-message" style="display: none;">Mensaje para el estado 'Entregado'.</textarea>
+                            </div>
+                            <div class="whatsapp-message-card">
+                                <div class="wa-message-trigger-card" data-target-id="whatsapp-status-sin-reparacion-message" data-title="Estado: Sin reparación" data-placeholders="Usa: {nombre_cliente}, {remito_numero}, {nombre_taller}">
+                                    <i class="fas fa-times-circle"></i><span class="wa-card-title">Sin Reparación</span>
+                                </div>
+                                <textarea id="whatsapp-status-sin-reparacion-message" style="display: none;">Mensaje para el estado 'Sin reparación'.</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="profile-actions-general">
+            <button class="btn-professional btn-save" id="saveProfileBtn">
+                <span><i class="fas fa-save"></i> Guardar Cambios Generales</span>
+            </button>
+            <div id="profile-status-message" class="status-message"></div>
+        </div>
+
+        <div id="cropModal" class="crop-modal-container">
+            <div class="crop-modal-content">
+                <h3 class="crop-modal-title">Ajustar Foto de Perfil</h3>
+                <div class="crop-image-container">
+                    <img id="imageToCrop" src="">
+                </div>
+                <div class="crop-actions">
+                    <button id="cropButton" class="submit-btn"><i class="fas fa-crop-alt"></i> Aplicar Recorte</button>
+                    <button id="cancelCropButton" class="btn-action btn-delete"><i class="fas fa-times"></i> Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="edit-wa-message-modal" class="wa-modal-overlay">
+            <div class="wa-modal-content">
+                <div class="wa-modal-header">
+                    <h3 id="wa-modal-title">Editar Mensaje</h3>
+                    <button id="wa-modal-close" class="wa-modal-close-btn" title="Cerrar">&times;</button>
+                </div>
+                <div class="wa-modal-body">
+                    <textarea id="wa-modal-textarea" class="form__field" rows="10"></textarea>
+                    <small id="wa-modal-placeholders"></small>
+                </div>
+                <div class="wa-modal-footer">
+                    <button id="wa-modal-cancel" class="btn-professional btn-delete"><span><i class="fas fa-times"></i> Cancelar</span></button>
+                    <button id="wa-modal-save" class="btn-professional btn-save"><span><i class="fas fa-save"></i> Guardar</span></button>
+                </div>
+            </div>
+        </div>
+        </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    
+    <script src="scripts/main.js" type="module"></script>
+    <script src="scripts/perfil.js" type="module"></script>
+    <script src="scripts/whatsapp-messages-tabs.js" type="module"></script> 
+    <script src="scripts/taller-tabs.js" type="module"></script> 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('edit-wa-message-modal');
+            if (!modal) return;
+
+            const modalTitle = document.getElementById('wa-modal-title');
+            const modalTextarea = document.getElementById('wa-modal-textarea');
+            const modalPlaceholders = document.getElementById('wa-modal-placeholders');
+            const saveBtn = document.getElementById('wa-modal-save');
+            const cancelBtn = document.getElementById('wa-modal-cancel');
+            const closeBtn = document.getElementById('wa-modal-close');
+
+            const triggerCards = document.querySelectorAll('.wa-message-trigger-card');
+
+            // Función para abrir el modal
+            const openModal = (card) => {
+                const targetId = card.dataset.targetId;
+                const title = card.dataset.title;
+                const placeholders = card.dataset.placeholders;
+                
+                const originalTextarea = document.getElementById(targetId);
+                if (!originalTextarea) return;
+
+                modalTitle.textContent = `Editando: ${title}`;
+                modalTextarea.value = originalTextarea.value;
+                modalPlaceholders.textContent = placeholders;
+                
+                saveBtn.dataset.targetId = targetId;
+
+                // AÑADIMOS la clase para activar la animación CSS
+                modal.classList.add('is-visible');
+            };
+
+            // Función para cerrar el modal
+            const closeModal = () => {
+                // QUITAMOS la clase para activar la animación de salida
+                modal.classList.remove('is-visible');
+            };
+
+            // Asignar evento a cada tarjeta
+            triggerCards.forEach(card => {
+                card.addEventListener('click', () => openModal(card));
+            });
+
+            // Evento para el botón de guardar
+            saveBtn.addEventListener('click', () => {
+                const targetId = saveBtn.dataset.targetId;
+                if (!targetId) return;
+
+                const originalTextarea = document.getElementById(targetId);
+                originalTextarea.value = modalTextarea.value;
+                
+                closeModal();
+            });
+
+            // Eventos para cerrar el modal
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+    </body>
+</html>

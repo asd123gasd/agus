@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial - PAL.Store</title>
+    
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/registros.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode no-sidebar-expand">
+    <header>
+        <div class="logo">
+          <img src="https://placehold.co/50x50/3b82f6/FFFFFF?text=P" alt="PA!.Store" id="logoPreviewHeader"/>
+        </div>
+        <nav>
+             <a href="escritorio.html" class="nav-button active" title="Escritorio"><i class="fas fa-desktop"></i><span class="nav-text">Escritorio</span></a>
+            <a href="registrar-equipo.html" class="nav-button" title="Registrar Equipo"><i class="fas fa-plus-circle"></i><span class="nav-text">Registrar</span></a>
+            <a href="registros.html" class="nav-button" title="Ver Registros"><i class="fas fa-history"></i><span class="nav-text">Historial</span></a>
+            <a href="inventario.html" class="nav-button" title="Inventario"><i class="fas fa-box-open"></i><span class="nav-text">Inventario</span></a>
+            <a href="perfil.html" class="nav-button" title="Mi Perfil"><i class="fas fa-user-circle"></i><span class="nav-text">Mi Perfil</span></a>
+        </nav>
+        </nav>
+        <div class="switch-container" title="Cambiar modo oscuro/claro">
+            <input type="checkbox" id="darkModeToggle" class="switch-checkbox" checked />
+            <label for="darkModeToggle" class="switch-slider"></label>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="table-container">
+            <h1 id="historial-title">Historial de Remitos</h1>
+
+            <div class="dashboard-container">
+                <div class="stat-card">
+                    <i class="fas fa-tools stat-icon"></i>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-total">0</span>
+                        <span class="stat-label">Equipos en Taller</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-box-open stat-icon"></i>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-listos">0</span>
+                        <span class="stat-label">Listos para Retirar</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-calendar-day stat-icon"></i>
+                    <div class="stat-info">
+                        <span class="stat-value" id="stat-hoy">0</span>
+                        <span class="stat-label">Ingresos de Hoy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-options-container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar en la página actual..." aria-label="Buscar en la página actual">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            
+                <div class="view-archived-container">
+                    <span class="switch-label">Ver Archivados</span>
+                    <label class="switch">
+                        <input type="checkbox" id="verArchivadosSwitch">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div id="filter-buttons-container" class="filter-buttons-container">
+                <button class="filter-btn active" data-filter="Todos">Todos</button>
+                <button class="filter-btn" data-filter="En Taller">En Taller</button>
+                <button class="filter-btn" data-filter="Listo para retirar">Listos para Retirar</button>
+                <button class="filter-btn" data-filter="Entregado">Entregados</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>N° Remito</th>
+                            <th>Cliente</th>
+                            <th>Equipo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-remitos-body">
+                        </tbody>
+                </table>
+            </div>
+            
+            <div class="pagination-container" id="pagination-container" style="display: none;">
+                <button id="prevPageBtn" class="btn-secondary" disabled><i class="fas fa-chevron-left"></i> Anterior</button>
+                <span id="page-info">Página 1</span>
+                <button id="nextPageBtn" class="btn-secondary" disabled>Siguiente <i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <div id="detallesModal" class="modal-backdrop">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Detalles del Remito</h2>
+                <button id="closeModalBtn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-column">
+                    <div class="detalle-seccion">
+                        <h4><i class="fas fa-user"></i> Datos del Cliente</h4>
+                        <p><strong>Nombre:</strong> <span id="detalleClienteNombre"></span></p>
+                        <p><strong>Teléfono:</strong> <span id="detalleClienteTelefono" title="Copiar teléfono"></span></p>
+                    </div>
+                    <div class="detalle-seccion">
+                        <h4><i class="fas fa-mobile-alt"></i> Datos del Equipo</h4>
+                        <p><strong>Equipo:</strong> <span id="detalleEquipo"></span></p>
+                        <p><strong>Estado de Ingreso:</strong> <span id="detalleEstadoIngreso"></span></p>
+                        <p><strong>Falla Reportada:</strong> <span id="detalleFallaReportada"></span></p>
+                        <p><strong>Clave/Contraseña:</strong> <span id="detalleClave"></span></p>
+                        <p><strong>Fecha de Ingreso:</strong> <span id="detalleFecha"></span></p>
+                    </div>
+                </div>
+                <div class="modal-column">
+                    <div class="detalle-seccion">
+                        <h4><i class="fas fa-wrench"></i> Progreso del Servicio</h4>
+                        <div class="form-field">
+                            <label for="editEstadoReparacion">Estado Actual</label>
+                            <span class="view-mode" id="detalleEstadoActual"></span>
+                            <select id="editEstadoReparacion" class="edit-mode form-input">
+                                <option>Recibido</option>
+                                <option>En revisión</option>
+                                <option>Esperando repuesto</option>
+                                <option>Esperando aprobación</option>
+                                <option>Reparado</option>
+                                <option>Listo para retirar</option>
+                                <option>Entregado</option>
+                                <option>Sin reparación</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="editDiagnostico">Diagnóstico Técnico</label>
+                            <p class="view-mode" id="detalleDiagnostico"></p>
+                            <textarea id="editDiagnostico" class="edit-mode form-input" rows="3"></textarea>
+                        </div>
+                        <div class="form-field">
+                            <label for="editPresupuesto">Presupuesto ($)</label>
+                            <p class="view-mode" id="detallePresupuesto"></p>
+                            <input type="number" id="editPresupuesto" class="edit-mode form-input" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="detalle-seccion">
+                        <h4><i class="fas fa-history"></i> Historial de Cambios</h4>
+                        <ul id="historialActualizaciones" class="historial-lista"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="view-mode">
+                    <button id="modalArchivarBtn" class="btn-secondary" style="display: none;"><i class="fas fa-archive"></i> Archivar</button>
+                    <button id="modalImprimirBtn" class="btn-secondary"><i class="fas fa-print"></i> Imprimir</button>
+                    <button id="modalActualizarBtn" class="btn-primary"><i class="fas fa-edit"></i> Actualizar</button>
+                </div>
+                <div class="edit-mode">
+                    <button id="modalCancelarBtn" class="btn-secondary">Cancelar</button>
+                    <button id="modalGuardarBtn" class="btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-container"></div>
+    
+    <script src="scripts/main.js?v=1.6" type="module"></script>
+    <script src="scripts/registros.js?v=1.6" type="module"></script>
+</body>
+</html>

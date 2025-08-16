@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden de Reparación</title>
+    <link rel="stylesheet" href="styles/imprimir.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <div class="remito-container">
+        <header class="remito-header">
+            <div class="logo-empresa">
+                <img id="logo-preview" src="https://placehold.co/200x80/374151/FFFFFF?text=Tu+Logo" alt="Logo de la Empresa">
+                <span id="nombre-empresa">Nombre de tu Taller</span>
+            </div>
+            <div class="remito-info">
+                <h1>ORDEN DE REPARACIÓN</h1>
+                <p><strong>N°:</strong> <span id="remito-numero"></span></p>
+                <p><strong>Fecha:</strong> <span id="remito-fecha"></span></p>
+            </div>
+        </header>
+
+        <main class="remito-main-content">
+            <div class="columna-izquierda">
+                <section class="info-general">
+                    <h2>INFORMACIÓN GENERAL</h2>
+                    <p><strong>Tipo:</strong> <span id="equipo-tipo"></span></p>
+                    <p><strong>Marca:</strong> <span id="equipo-marca"></span></p>
+                    <p><strong>Modelo:</strong> <span id="equipo-modelo"></span></p>
+                    <p><strong>Serial/Patente/IMEI:</strong> <span id="equipo-serie"></span></p>
+                </section>
+
+                <section class="diagnostico-ingreso">
+                    <h2>CHEQUEOS BÁSICOS</h2>
+                    <ul id="diagnostico-lista"></ul>
+                </section>
+
+                <section class="problema-cliente">
+                    <h2>PROBLEMA DESCRITO POR EL CLIENTE</h2>
+                    <p id="descripcion-falla"></p>
+                </section>
+                 <section class="observaciones-recepcion">
+                    <h2>OBSERVACIONES EN LA RECEPCIÓN</h2>
+                    <p id="observaciones-adicionales"></p>
+                </section>
+            </div>
+
+            <div class="columna-derecha">
+                <section class="datos-cliente">
+                    <h2>DATOS DEL CLIENTE</h2>
+                    <p><strong>Titular:</strong> <span id="cliente-nombre"></span></p>
+                    <p><strong>Tel/SMS/WhatsApp:</strong> <span id="cliente-telefono"></span></p>
+                    <p><strong>Correo electrónico:</strong> <span id="cliente-email"></span></p>
+                </section>
+
+                <section class="terminos-condiciones">
+                    <h2>TÉRMINOS Y CONDICIONES</h2>
+                    <p>Usted al firmar presencialmente, o al aceptar digitalmente, da por entendido y aceptado lo siguiente: El taller no se responsabiliza por la pérdida de información. Los equipos no retirados después de 90 días serán considerados abandonados.</p>
+                </section>
+
+                <section class="firma-aclaracion">
+                    <h2>ACEPTACIÓN POR PARTE DEL CLIENTE</h2>
+                    <div class="firma-box">
+                        <p class="firma-linea"></p>
+                        <p>Firma del Titular</p>
+                    </div>
+                     <div class="aclaracion-box">
+                        <p class="aclaracion-linea"></p>
+                        <p>Aclaración</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div class="talon-container">
+            <div class="talon-instruccion"><p><i class="fas fa-cut"></i> --- Entregue la parte inferior al cliente. Conserve la parte superior junto al equipo. --- </p></div>
+            <div class="talon-content">
+                <div class="talon-info">
+                    <img id="logo-preview-talon" src="https://placehold.co/150x60/374151/FFFFFF?text=Tu+Logo" alt="Logo">
+                    <p>Hola <strong id="cliente-nombre-talon"></strong>, el <span id="remito-fecha-talon"></span> indicaste reparar tu <strong id="equipo-info-talon"></strong>. Un técnico pronto definirá el presupuesto. Solo se podrá retirar con este cupón y tu Documento.</p>
+                    <p><strong>N° de Orden de Reparación: <span id="remito-numero-talon"></span></strong></p>
+                </div>
+                <div class="talon-qr">
+                    <div class="qrcode-container" id="qrcode"></div>
+                    <p>Consulta el estado actual escaneando este código QR</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+    <script src="scripts/imprimir.js" type="module"></script>
+
+</body>
+</html>

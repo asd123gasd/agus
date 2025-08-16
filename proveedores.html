@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores - PA!.Store</title>
+    
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/registros.css">
+    <link rel="stylesheet" href="styles/inventario.css"> <link rel="stylesheet" href="styles/proveedores.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-mode no-sidebar-expand">
+    <header>
+        <div class="logo">
+           <img src="assets/logo-marca.png" alt="PA!.Store" id="logoPreviewHeader"/>
+        </div>
+        <nav>
+            <a href="escritorio.html" class="nav-button" title="Escritorio"><i class="fas fa-desktop"></i><span class="nav-text">Escritorio</span></a>
+            <a href="registrar-equipo.html" class="nav-button" title="Registrar Equipo"><i class="fas fa-plus-circle"></i><span class="nav-text">Registrar</span></a>
+            <a href="registros.html" class="nav-button" title="Ver Registros"><i class="fas fa-history"></i><span class="nav-text">Historial</span></a>
+            <a href="inventario.html" class="nav-button" title="Inventario"><i class="fas fa-box-open"></i><span class="nav-text">Inventario</span></a>
+            <a href="proveedores.html" class="nav-button active" title="Proveedores"><i class="fas fa-truck"></i><span class="nav-text">Proveedores</span></a>
+            <a href="perfil.html" class="nav-button" title="Mi Perfil"><i class="fas fa-user-circle"></i><span class="nav-text">Mi Perfil</span></a>
+        </nav>
+        <div class="switch-container" title="Cambiar modo oscuro/claro">
+            <input type="checkbox" id="darkModeToggle" class="switch-checkbox" checked />
+            <label for="darkModeToggle" class="switch-slider"></label>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="table-container">
+            <div class="inventory-header">
+                <h1>Gestión de Proveedores</h1>
+                <div class="header-actions">
+                    <button id="btn-open-modal" class="btn-primary"><i class="fas fa-plus"></i> Agregar Proveedor</button>
+                </div>
+            </div>
+
+            <div class="table-options-container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre, contacto o email..." aria-label="Buscar proveedor">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre del Proveedor</th>
+                            <th>Contacto</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="suppliers-table-body">
+                        </tbody>
+                </table>
+                 <div id="loader" class="loader-container"><div class="spinner"></div></div>
+            </div>
+        </div>
+    </main>
+
+    <div id="supplier-modal" class="inv-modal-backdrop">
+        <div class="inv-modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Agregar Nuevo Proveedor</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <form id="supplier-form" class="inv-modal-form" novalidate>
+                <input type="hidden" id="supplier-id">
+                
+                <div class="form-group">
+                    <input class="form-input" type="text" id="supplier-name" placeholder=" " required>
+                    <label for="supplier-name" class="form-label">Nombre del Proveedor (*)</label>
+                </div>
+                
+                <div class="form-group">
+                    <input class="form-input" type="text" id="supplier-contact" placeholder=" ">
+                    <label for="supplier-contact" class="form-label">Persona de Contacto</label>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <input class="form-input" type="tel" id="supplier-phone" placeholder=" ">
+                        <label for="supplier-phone" class="form-label">Teléfono</label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-input" type="email" id="supplier-email" placeholder=" ">
+                        <label for="supplier-email" class="form-label">Email</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-input" id="supplier-notes" placeholder=" " rows="3"></textarea>
+                    <label for="supplier-notes" class="form-label">Notas Adicionales</label>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button id="modal-cancel-btn" class="btn-secondary">Cancelar</button>
+                <button id="modal-save-btn" type="submit" form="supplier-form" class="btn-primary">
+                    <span>Guardar</span>
+                    <div class="spinner" style="display: none;"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js" type="module"></script>
+    <script src="scripts/proveedores.js" type="module"></script>
+</body>
+</html>
